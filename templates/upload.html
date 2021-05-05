@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>首页</title>
+    </head>
+    <body>
+    <div id="box">
+        <form id="uploadForm" enctype="multipart/form-data" >
+            <input type="file" name="file">
+            <input type="button" value="上传" id="upFileBtn">
+        </form>
+    </div>
+    <div id="img1" style="height:25%;width:25%;"></div>
+
+    </body>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-2.1.4.min.js" ></script>
+    <script type="text/javascript">
+        $('#upFileBtn').click(function () {
+            var formFile = new FormData($('#uploadForm')[0])
+		     $.ajax({
+                url:"parseImg",
+                type:"POST",
+                data:formFile,
+                processData:false,
+                contentType:false,
+                success: function (data) {
+                    document.getElementById('img1').innerHTML=data
+                }
+             })
+        })
+    </script>
+</html>
